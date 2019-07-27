@@ -1,4 +1,4 @@
-var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trigger, top_N}) {
+var themeLocalSearch = function({ search_path, zip_Path, version_Path, input_Trigger, top_N }) {
     // Popup Window;
     var isfetched = false,
         isXml = true;
@@ -55,37 +55,37 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
             }
         })
     }
-    
-	function fixedInputWhenScrolling() {
-		var searchContainerId = '.local-search-popup',
-			searchInputId = '#local-search-input',
-			searchInputPromptH = $(".input-prompt").outerHeight();
-		
-		$(searchContainerId).scroll(function() {
-			var scrollTop = $(searchContainerId).scrollTop();
-		
-			if(scrollTop >= searchInputPromptH/2) {				
-				$(searchInputId).addClass('input-fixed');
-			} else {
-				$(searchInputId).removeClass('input-fixed');
-			}
-		}).trigger('scroll');
-	}
-	
-	
-	function clearScroll() {
-		var searchContainerId = '.local-search-popup',
-			scrollSpeed = 5; //shoud be small value! 
-		
-		$(searchContainerId).animate({
-			scrollTop: 0
-		}, scrollSpeed);	
-	}
-   
-	
+
+    function fixedInputWhenScrolling() {
+        var searchContainerId = '.local-search-popup',
+            searchInputId = '#local-search-input',
+            searchInputPromptH = $(".input-prompt").outerHeight();
+
+        $(searchContainerId).scroll(function() {
+            var scrollTop = $(searchContainerId).scrollTop();
+
+            if (scrollTop >= searchInputPromptH / 2) {
+                $(searchInputId).addClass('input-fixed');
+            } else {
+                $(searchInputId).removeClass('input-fixed');
+            }
+        }).trigger('scroll');
+    }
+
+
+    function clearScroll() {
+        var searchContainerId = '.local-search-popup',
+            scrollSpeed = 5; //shoud be small value! 
+
+        $(searchContainerId).animate({
+            scrollTop: 0
+        }, scrollSpeed);
+    }
+
+
     // search function;
     var searchFunc = function(search_id, content_id) {
-    		
+
         'use strict';
         isfetched = true;
         var datas = JSON.parse(localStorage.getItem('searchJson'));
@@ -93,9 +93,9 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
         var input = document.getElementById(search_id);
         var resultContent = document.getElementById(content_id);
         var inputEventFunction = function() {
-        	// TODO
-        	clearScroll(); 
-        	                   	
+            // TODO
+            clearScroll();
+
             var searchText = input.value.trim().toLowerCase();
             var keywords = searchText.split(/[\s\-]+/);
             if (keywords.length > 1) {
@@ -293,7 +293,7 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
                         return resultRight.id - resultLeft.id;
                     }
                 });
-                var searchResultList = '<div class=\"search-result-number"\>' + resultItems.length + ' results at total!</div>' + '<ul class=\"search-result-list\">';
+                var searchResultList = '<div class=\"search-result-number"\>' + resultItems.length + ' 个搜索结果!</div>' + '<ul class=\"search-result-list\">';
                 resultItems.forEach(function(result) {
                     searchResultList += result.item;
                 })
@@ -313,7 +313,7 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
             });
         }
 
-        proceedsearch(); 
+        proceedsearch();
     }
 
     // handle and trigger popup window;
@@ -338,7 +338,7 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
             onPopupClose();
         }
     });
-    
+
     // TODO
     fixedInputWhenScrolling();
 };
